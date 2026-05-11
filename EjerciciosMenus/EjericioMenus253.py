@@ -11,7 +11,12 @@ while menu:
 
     if op == 1 :
         print("Pago Tarjeta de Crédito")
-        pago = int(input("Ingrese monto de pago: "))
+        while True:
+            try:
+                pago = int(input("Ingrese monto de pago: "))
+                break
+            except:
+                print("El valor debe ser numerico!")
         if pago >= 0 :
             if pago <= deuda:
                 deuda = deuda - pago
