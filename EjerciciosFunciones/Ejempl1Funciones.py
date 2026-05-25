@@ -14,6 +14,7 @@ print(resta)
 
 radio = float(input("Ingrese radio circulo: "))
 areaCirculo = fn.AreaCirculo(radio)
+#print("El area es: " , fn.areaCirculo(radio))
 print("El area es: " , areaCirculo)
 perimetro = fn.perimetroCirculo(radio)
-print("El perimetro es: " , perimetro)
+print(f"El perimetro es: {perimetro}")
