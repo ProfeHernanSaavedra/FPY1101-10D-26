@@ -1,4 +1,4 @@
-nombres = ["juan","Pedro","maria",4]
+nombres = ["juan","Pedro","maria",4,True]
 #            0      1        2
 
 print(nombres)
