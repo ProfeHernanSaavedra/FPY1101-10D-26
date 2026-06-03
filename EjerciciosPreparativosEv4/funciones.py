@@ -97,3 +97,86 @@ def producto_mas_caro(productos):
     print(f"Producto más caro es {mayorNombre}")
     print(f"Su precio es: ${mayor}")
 
+## ------ COMIENZO EJERCICIO 2 ----------
+
+def agregar_alumno(alumnos):
+    nombre = input("Nombre del alumno: ").strip()
+
+    if nombre == "":
+        print("El nombre no puede estar vacío")
+        return
+    
+    if nombre in alumnos:
+        print("El alumno ya existe!")
+        return
+    
+    if nombre.isdigit():
+        print("El nombre debe ser letras! ")
+        return
+
+    cantidad = int(input("Cantidad de notas: "))
+
+    notas = []
+
+    for i in range(cantidad):
+        nota = leer_nota(f"Ingrese nota {i+1}: ")
+        notas.append(nota)
+
+    alumnos[nombre] = notas # agregar al dicc los datos 
+    print("Alumno agregado correctamente!")
+
+def mostrar_alumnos(alumnos):
+    if len(alumnos) == 0:
+        print("No hay alumnos registrados")
+        return
+    for nombre in alumnos:
+        print(nombre,":",alumnos[nombre])
+
+def ver_promedios(alumnos):
+    if len(alumnos) == 0:
+        print("No hay alumnos registrados, no se pueden ver promedios")
+        return
+
+    for nombre in alumnos:
+        promedio = sum(alumnos[nombre]) /len(alumnos[nombre])
+        print(nombre," tiene un Promedio de ",round(promedio,1))
+
+def mejor_alumno(alumnos):
+    if len(alumnos) == 0:
+        print("No hay alumnos registrados, no se pueden ver promedios")
+        return
+    mejorAlumno = ""
+    mejor_promedio = 0
+    for nombre in alumnos:
+        promedio = sum(alumnos[nombre]) /len(alumnos[nombre])
+        
+        if promedio > mejor_promedio:
+            mejor_promedio = promedio
+            mejorAlumno = nombre
+
+    print("Mejor alumno: ",mejorAlumno, "con Promedio: ",round(mejor_promedio,1))
+
+def cantidad_aprobados(alumnos):
+    if len(alumnos) == 0:
+        print("No hay alumnos registrados")
+        return
+
+    aprobados = 0
+
+    for nombre in alumnos:
+        promedio = sum(alumnos[nombre]) /len(alumnos[nombre])
+
+        if promedio >= 4.0:
+            aprobados = aprobados + 1 #aprobados += 1
+    
+    print("Cantidad de aprobados es: ",aprobados)
+
+def leer_nota(mensaje):
+    while True:
+        try:
+            nota = float(input(mensaje))
+            if nota >= 1.0 and nota <= 7.0:
+                return nota
+            print("La nota debe estar entre 1.0 y 7.0")
+        except ValueError:
+            print("Debe ingresar una nota válida!")
