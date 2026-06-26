@@ -152,7 +152,7 @@ def eliminar_consola(consolas,ventas):
     else:
         print("Eliminación cancelada!")
 
-
+#ppal
 while True:
     menu()
     op = leer_opcion()
