@@ -54,6 +54,50 @@ def validar_stock(stockStr):
     
     return int(stockStr) >= 0
 
+def validar_fabricante(fabricante):
+    return 2 <= len(fabricante.strip()) <= 30
+
+def agregar_consola(consolas,ventas):
+    sigla = input("Ingrese sigla (2 a 5 letras mayúsculas)").strip()
+    while not validar_sigla_formato(sigla):
+        print("Error de sigla, debe tener 2 a 5 letras mayúsculas, vuelva a intentar")
+        sigla = input("Sigla: ") .strip()
+
+    if not validar_sigla_no_existe(sigla,consolas):
+        print("La sigla ya existe, no se puede agregar")
+        return
+
+    nombre = input("Ingrese el nombre: (3 y 40 caracteres) : ").strip()
+    while not validar_nombre(nombre):
+        print("Error, nombre no válido, intente nuevamente")
+        nombre = input("Ingrese el nombre: (3 y 40 caracteres) : ").strip()
+
+    fabricante = input("Fabricante(2 a 30 caracteres): ").strip()
+    while not validar_fabricante(fabricante) :
+        print("Error, fabricante no válido, intente nuevamente")
+        fabricante = input("Fabricante(2 a 30 caracteres): ").strip()
+
+    añoStr = input("Año de lanzamiento(1972-2025): ").strip()
+    while not validar_año(añoStr):
+        print("Error, año no válido!, intente nuevamente")
+        añoStr = input("Año de lanzamiento(1972-2025): ").strip()
+
+    precioStr = input("Ingrese precio: ").strip()
+    while not validar_precio(precioStr):
+        print("Error, debe ser mayor a cero, intente nuevamente")
+        precioStr = input("Ingrese precio: ").strip()
+
+    stockStr = input("Ingrese Stock: ").strip()
+    while not validar_stock(stockStr):
+        print("Error, deber ser mayor a cero, intente nuevamente")
+        stockStr = input("Ingrese Stock: ").strip()
+    
+    consolas[sigla] = [nombre,fabricante,int(añoStr)]
+    ventas[sigla] = [float(precioStr),int(stockStr)]
+
+    print("Consola agregada correctamente")
+
+
 
 
 while True:
