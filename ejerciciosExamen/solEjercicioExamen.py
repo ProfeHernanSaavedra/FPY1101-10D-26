@@ -97,7 +97,60 @@ def agregar_consola(consolas,ventas):
 
     print("Consola agregada correctamente")
 
+def buscar_consola(consolas,sigla):
+    return sigla in consolas
 
+def opcion_buscar(consolas,ventas):
+    sigla = input("Ingrese sigla a buscar: ").strip().upper()
+    if buscar_consola(consolas,sigla):
+        detalle_consola(sigla,consolas,ventas)
+    else:
+        print("No se encontro consola ",sigla)
+
+
+def mostrar_todas(consolas,ventas):
+    print("="*60)
+    print("Listado de consolas")
+    print("="*60)
+
+    if len(consolas) == 0 :
+        print("No hay datos de consolas")
+    else:
+        for sigla,datos in consolas.items():
+            nombre,fabricante,año = datos
+            precio,stock = ventas[sigla]
+            print(f"{sigla} | {nombre} | {fabricante} | {año} | ${precio} | {stock}")
+    print("=" * 62)
+    print(f"Total de consolas: {len(consolas)}")
+
+
+def detalle_consola(sigla,consolas,ventas):
+    nombre,fabricante,año = consolas[sigla]
+    precio,stock = ventas[sigla]
+
+    print("Consola Encontrada")
+    print("Sigla: ",sigla)
+    print("Nombre: ",nombre)
+    print("Fabricante: ",fabricante)
+    print("Año: ",año)
+    print("Precio :$",precio )
+    print("Stock: ",stock)
+
+def eliminar_consola(consolas,ventas):
+    print("Eliminar consola")
+    sigla = input("Ingrese sigla a eliminar").strip().upper()
+
+    if not buscar_consola(consolas,sigla):
+        print("No se encuentra la sigla")
+        return
+    detalle_consola(sigla,consolas,ventas)
+    confirmar = input("Seguro desea eliminar? (s/n)").strip().lower()
+    if confirmar == "s":
+        del consolas[sigla]
+        del ventas[sigla]
+        print("Eliminado exitosamente")
+    else:
+        print("Eliminación cancelada!")
 
 
 while True:
