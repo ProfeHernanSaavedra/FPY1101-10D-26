@@ -20,6 +20,42 @@ def leer_opcion():
         except ValueError:
             print("Debe ingresar un número!! ")
 
+#  funciones de validaciones que retornan True o False
+
+def validar_sigla_formato(sigla):
+    return sigla.upper() and sigla.isalpha() and len(sigla) >= 2 and len(sigla) <= 5
+    # return True
+
+def validar_sigla_no_existe(sigla,consolas):
+    if sigla not in consolas:
+        return True
+    else:
+        return False
+
+def validar_nombre(nombre):
+
+    return 3 <= len(nombre.strip()) <= 40
+
+def validar_año(añoStr):
+    if not añoStr.isdigit():
+        return False
+    
+    return 1972 <= int(añoStr) <= 2025
+
+def validar_precio(precioStr):
+    try:
+        return float(precioStr) > 0
+    except ValueError:
+        return False
+
+def validar_stock(stockStr):
+    if not stockStr.isdigit():
+        return False
+    
+    return int(stockStr) >= 0
+
+
+
 while True:
     menu()
     op = leer_opcion()
